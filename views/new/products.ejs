@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory App</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="header">
+    <h1 class="store-title">Inventory</h1>
+
+    <nav class="categories">
+      <a href="/" class="<%= !currentCategory ? 'active' : '' %>">
+        Todos
+      </a>
+
+      <% categories.forEach(category => { %>
+        <a
+          href="/categories/<%= encodeURIComponent(category.name) %>"
+          class="<%= currentCategory === category.name ? 'active' : '' %>"
+        >
+          <%= category.name %>
+        </a>
+      <% }) %>
+    </nav>
+  </header>
+
+  <main class="main">
+    <section class="page-heading">
+      <div>
+        <p class="eyebrow">INVENTORY MANAGEMENT</p>
+        <h1><%= currentCategory || 'Todos los productos' %></h1>
+      </div>
+
+      <a href="/products/create" class="create-product-button">
+        + Crear producto
+      </a>
+    </section>
+
+    <section class="products-grid">
+      <% if (products.length === 0) { %>
+        <p>No hay productos en esta categoría.</p>
+      <% } %>
+
+      <% products.forEach(product => { %>
+        <article class="product-card">
+          <div class="product-top">
+            <h2 class="product-name"><%= product.name %></h2>
+
+            <span class="product-category">
+              <%= product.category %>
+            </span>
+          </div>
+
+          <div class="product-info">
+            <p class="product-price">
+              $<%= Number(product.price).toLocaleString('es-AR') %>
+            </p>
+
+            <div class="product-stock">
+              <span>Stock</span>
+              <strong><%= product.stock %> unidades</strong>
+            </div>
+          </div>
+
+          <div class="product-actions">
+            <a
+              href="/products/<%= product.id %>"
+              class="product-button"
+            >
+              Ver producto
+            </a>
+
+            <form
+              action="/products/<%= product.id %>/delete"
+              method="POST"
+              onsubmit="return confirm('¿Seguro que querés eliminar este producto?');"
+            >
+              <button type="submit" class="delete-button">
+                Eliminar
+              </button>
+            </form>
+          </div>
+        </article>
+      <% }) %>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Inventory App
+  </footer>
+</body>
+</html>

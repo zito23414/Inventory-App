@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zito Store</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+<header class="header">
+  <h1 class="store-title">Zito Store</h1>
+
+  <nav class="categories">
+    <a href="/">All</a>
+    <a href="/categories/GPUs">GPUs</a>
+    <a href="/categories/CPUs">CPUs</a>
+    <a href="/categories/RAM">RAM</a>
+    <a href="/categories/Storage">Storage</a>
+    <a href="/categories/Peripherals">Peripherals</a>
+  </nav>
+</header>
+
+
+  <main class="main">
+
+    <div class="page-heading">
+      <p class="eyebrow">HARDWARE STORE</p>
+      <h1>PC Components</h1>
+    </div>
+
+    <div class="products-grid">
+
+      <% products.forEach(product => { %>
+  <article class="product-card">
+    <h2><%= product.name %></h2>
+    <p>Precio: $<%= product.price %></p>
+    <p>Stock: <%= product.stock %></p>
+    <p>Categoría: <%= product.category %></p>
+    <p>Marca: <%= product.brand %></p>
+
+    <a href="/products/<%= product.id %>" class="product-button">
+      Ver producto
+    </a>
+  </article>
+<% }) %>
+
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Zito Store. All rights reserved.</p>
+  </footer>
+
+</body>
+
+</html>

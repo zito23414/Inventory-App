@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crear producto</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="product-detail">
+      <div class="product-detail__header">
+        <a href="/" class="back-link">← Volver al inventario</a>
+        <span class="product-id">Producto #<%= product.id %></span>
+      </div>
+
+      <div class="product-detail__card">
+        <div class="product-card__top">
+          <span class="product-category"><%= product.category %></span>
+          <h1><%= product.name %></h1>
+          <p class="product-brand">
+            Marca: <strong><%= product.brand %></strong>
+          </p>
+        </div>
+
+        <div class="product-card__info">
+          <div class="info-item">
+            <span class="info-label">Precio</span>
+            <p class="info-value">
+              $<%= Number(product.price).toLocaleString("es-AR") %>
+            </p>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">Stock disponible</span>
+            <p class="info-value"><%= product.stock %> unidades</p>
+          </div>
+        </div>
+
+        <div class="product-card__actions">
+          <a href="/products/<%= product.id %>/edit" class="btn btn-edit">
+            Editar producto
+          </a>
+
+          <a href="/" class="btn btn-secondary"> Volver </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

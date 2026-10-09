@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear producto</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="product-form-container">
+    <h1 class="title">Crear producto</h1>
+    <p>Completá los datos para agregar un nuevo producto al inventario.</p>
+
+    <form action="/products/create" method="POST">
+      <div class="form-group">
+        <label for="name">Nombre del producto</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="price">Precio</label>
+        <input
+          type="number"
+          id="price"
+          name="price"
+          min="0"
+          step="0.01"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="stock">Stock</label>
+        <input
+          type="number"
+          id="stock"
+          name="stock"
+          min="0"
+          step="1"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="category_id">Categoría</label>
+        <select id="category_id" name="category_id" required>
+          <option value="">Seleccioná una categoría</option>
+
+          <% categories.forEach(category => { %>
+            <option value="<%= category.id %>">
+              <%= category.name %>
+            </option>
+          <% }) %>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="brand_id">Marca</label>
+        <select id="brand_id" name="brand_id" required>
+          <option value="">Seleccioná una marca</option>
+
+          <% brands.forEach(brand => { %>
+            <option value="<%= brand.id %>">
+              <%= brand.name %>
+            </option>
+          <% }) %>
+        </select>
+      </div>
+
+      <button type="submit">Crear producto</button>
+      <a href="/">Cancelar</a>
+    </form>
+  </main>
+</body>
+</html>
+
